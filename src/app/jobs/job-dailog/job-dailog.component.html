@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>{{data?'update':'create'}} Job </h1>
+<div mat-dialog-content>
+ 
+  <mat-form-field appearance="fill">
+    <mat-label>Job title</mat-label>
+    <input matInput [(ngModel)]="job.title" />
+  </mat-form-field>
+
+  
+
+  <mat-form-field appearance="fill">
+    <mat-label>Company name</mat-label>
+    <input matInput [(ngModel)]="job.company" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Job Description</mat-label>
+    <textarea matInput [(ngModel)]="job.desciption" rows="4">
+        </textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Industry</mat-label>
+    <mat-select [(ngModel)]="job.industry">
+      <mat-option *ngFor="let industry of industries" [value]="industry">
+        {{industry}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-slide-toggle [(ngModel)]="job.isActive" color="primary">Active ?</mat-slide-toggle>
+
+  
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">cancel</button>
+  <button mat-raised-button [disabled]="!job.title||!job.company||!job.industry"  (click)="save()" cdkFocusInitial>save</button>
+</div>

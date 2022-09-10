@@ -1,0 +1,102 @@
+<h1 mat-dialog-title>Applicant info</h1>
+<div mat-dialog-content>
+ 
+<table class="table">
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>email</th>
+            <th>Mobile</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.mobile}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<mat-label>
+
+    Skills 
+
+</mat-label>
+ 
+   
+    <mat-chip-list #chipList aria-label="Skill">
+      <mat-chip *ngFor="let skill of user.skills">
+        {{skill}}
+        
+      </mat-chip>
+     
+    </mat-chip-list>
+ 
+  
+  
+
+  
+  
+  <h3 class="mt-2">  
+   
+   Education </h3>
+
+   <table class="table">
+    <thead>
+        <tr>
+            <th>School name</th>
+            <th>Completed Date</th>
+            <th>Highest level</th>
+            
+        </tr>
+        <tr *ngFor="let edu of user.education">
+            <td>{{edu.school}}</td>
+            <td>{{edu.ended|date:'longDate'}}</td>
+            <td><mat-icon class="{{edu.heightLevel?'text-success':'text-danger'}}">{{edu.heightLevel?'task_alt':'cancel'}}</mat-icon> </td>
+
+        </tr>
+    </thead>
+   </table>
+<h3 class="mt-2">
+  
+Experaince </h3>
+
+<table class="table">
+<thead>
+    <tr>
+        <th>Job Title</th>
+        <th>Company</th>
+        <th>Industry</th>
+        <th>Stat Date</th>
+        <th>End Date</th>
+       
+    </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let experaince of user.experiance">
+    <td>{{experaince.title}}</td>
+    <td>{{experaince.company}}</td>
+    <td>{{experaince.industry}}</td>
+    <td>{{experaince.started|date:'longDate'}}</td>
+    <td>{{experaince.ended|date:'longDate'}}</td>
+
+
+  </tr>
+</tbody>
+</table>
+
+  
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">close</button>
+
+  <a target="_blank" href="/assets/uploads/{{user.cv}}"> <button mat-raised-button    *ngIf="user.cv">
+    <mat-icon>file_download</mat-icon> Resume
+  
+    </button>
+    </a>
+
+ 
+</div>

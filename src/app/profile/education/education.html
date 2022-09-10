@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>{{data?'update':'create'}} Edication history</h1>
+<div mat-dialog-content>
+ 
+  <mat-form-field appearance="fill">
+    <mat-label>School name</mat-label>
+    <input matInput [(ngModel)]="history.school">
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Date Completed </mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="history.ended">
+   
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-slide-toggle [(ngModel)]="history.heightLevel" color="primary">Highest education</mat-slide-toggle>
+
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">cancel</button>
+  <button mat-raised-button [disabled]="!history.ended||!history.school"  [mat-dialog-close]="history" cdkFocusInitial>save</button>
+</div>

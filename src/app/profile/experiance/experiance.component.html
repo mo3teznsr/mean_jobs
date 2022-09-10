@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>{{data?'update':'create'}} Experaince history</h1>
+<div mat-dialog-content>
+ 
+  <mat-form-field appearance="fill">
+    <mat-label>Job title</mat-label>
+    <input matInput [(ngModel)]="history.title">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Company name</mat-label>
+    <input matInput [(ngModel)]="history.company">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Industry</mat-label>
+    <mat-select [(ngModel)]="history.industry">
+      <mat-option *ngFor="let industry of industries" [value]="industry">
+        {{industry}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Date Completed started </mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="history.started">
+   
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Date Completed ended </mat-label>
+    <input matInput [matDatepicker]="picker1" [(ngModel)]="history.ended">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+
+  
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">cancel</button>
+  <button mat-raised-button [disabled]="!history.title||!history.company||!history.started||!history.ended"  [mat-dialog-close]="history" cdkFocusInitial>save</button>
+</div>

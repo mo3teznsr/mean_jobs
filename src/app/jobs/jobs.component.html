@@ -1,0 +1,54 @@
+
+
+<div class="card">
+
+    <h3> <button matSuffix mat-icon-button color="primary" (click)="manageJob()">
+        <mat-icon >add_circle</mat-icon>
+    </button> Jobs</h3>
+
+    <mat-form-field class="w-100" >
+      
+        <mat-icon matPrefix>search</mat-icon>
+        <input type="text" matInput placeholder="search" [(ngModel)]="search" (input)="filter()">
+       
+        
+      </mat-form-field>
+
+      <table class="table">
+        <thead>
+            <tr >
+                <th>Title</th>
+                <th>Company</th>
+                <th>Industry</th>
+                <th>Date</th>
+                <th style="min-width: 150px;">
+                   action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let job of list">
+                <th>
+                 <mat-icon class="{{job.isActive?'text-success':'text-danger'}}">{{job.isActive?'task_alt':"cancel"}}</mat-icon>   {{job.title}}
+                </th>
+                <th>{{job.company}}</th>
+                <th>{{job.industry}}</th>
+                <th>{{job.createdAt|date:"shortDate"}}</th>
+                <th>
+                    <button mat-icon-button (click)="manageJob(job)">
+                        <mat-icon class="text-warning">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="delete(job)">
+                        <mat-icon class="text-danger">delete</mat-icon>
+                    </button>
+                    <button mat-icon-button  routerLink="/jobs/applications/{{job._id}}" >
+                        <mat-icon class="text-primary"> arrow_forward</mat-icon>
+                    </button>
+                    
+                </th>
+            </tr>
+        </tbody>
+      </table>
+
+    
+</div>

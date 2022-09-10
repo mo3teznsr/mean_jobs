@@ -1,0 +1,55 @@
+<mat-card >
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form >
+      <div *ngIf="error" class="alert alert-danger mb-2 p-1" role="alert">
+       
+        <button mat-icon-button class="py-0" (click)="error=null">
+          <mat-icon aria-hidden="false"  fontIcon="close"></mat-icon>
+         </button>
+          {{error}}
+       
+       
+      </div>
+      
+      
+            <mat-form-field class="w-100 mb-2" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                placeholder="Email"
+                [(ngModel)]="email"
+                name="email"
+                required
+                
+              />
+              <mat-error >please enter valid email</mat-error>
+            </mat-form-field>
+        
+            <mat-form-field class="w-100"  appearance="outline">
+              <mat-label>Password</mat-label>
+              <input
+                matInput
+                placeholder="Password"
+                [(ngModel)]="password"
+                type="password"
+                name="password"
+                required
+               
+              />
+              <mat-error>password is required</mat-error>
+            </mat-form-field>
+        
+    </form>
+  </mat-card-content>
+  <mat-card-actions class="text-center">
+    <button mat-raised-button class="mb-1" (click)="login()" color="primary">Login</button>
+    <br/>
+    <span
+      >Don't have an account ?
+      <a [routerLink]="['/auth/register']">register</a> here</span
+    >
+  </mat-card-actions>
+</mat-card>

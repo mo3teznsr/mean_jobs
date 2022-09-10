@@ -1,0 +1,145 @@
+
+
+
+<div class="card" *ngIf="user">
+
+
+    
+      <h3>My Profile</h3>
+      <mat-form-field class=" mb-2 me-2" appearance="outline">
+        <mat-label>Full name</mat-label>
+        <input matInput placeholder="Full name" required [(ngModel)]="user.name" />
+        <mat-error>name is required</mat-error>
+      </mat-form-field>
+   
+      <mat-form-field class="mb-2 me-2" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email"  required  [(ngModel)]="user.email" />
+        <mat-error 
+          >Invalid email address</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="mb-2 me-2" appearance="outline">
+        <mat-label>Mobile number</mat-label>
+        <input matInput  placeholder="Mobile number" [(ngModel)]="user.mobile" required
+         
+        />
+        <mat-error 
+          >Mobile number is required</mat-error
+        >
+      </mat-form-field>
+
+
+      <mat-label>Resume <a target="_blank" href="/assets/uploads/{{user.cv}}"> <button mat-icon-button    *ngIf="user.cv">
+      <mat-icon>file_download</mat-icon>
+    
+      </button> </a>  <button mat-icon-button (click)="file.click()">
+        <mat-icon>cloud_upload</mat-icon>
+      </button> </mat-label>
+
+      <input type="file" (change)="upload($event)" class="d-none" #file />
+
+      
+      <mat-label>
+        <button 
+        (click)="addSkill()"
+        mat-icon-button  
+        color="primary" >
+            <mat-icon >add_circle</mat-icon>
+          </button>
+        Skills 
+
+    </mat-label>
+     
+       
+        <mat-chip-list #chipList aria-label="Skill">
+          <mat-chip *ngFor="let skill of user.skills" (click)="addSkill(skill)" (removed)="removeSkill(skill)">
+            {{skill}}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+         
+        </mat-chip-list>
+     
+      
+      
+  
+      
+      
+      <h3 class="mt-2">  
+        <button mat-icon-button (click)="manageEducation()" color="primary">
+            <mat-icon >add_circle</mat-icon>
+          </button>
+       Education </h3>
+
+       <table class="table">
+        <thead>
+            <tr>
+                <th>School name</th>
+                <th>Completed Date</th>
+                <th>Highest level</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let edu of user.education">
+                <td>{{edu.school}}</td>
+                <td>{{edu.ended|date:'longDate'}}</td>
+                <td><mat-icon class="{{edu.heightLevel?'text-success':'text-danger'}}">{{edu.heightLevel?'task_alt':'cancel'}}</mat-icon> </td>
+                <td>
+                    <button mat-icon-button (click)="manageEducation(edu)">
+                        <mat-icon class="text-warning">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="deleteEducation(edu)">
+                        <mat-icon class="text-danger">delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </thead>
+       </table>
+<h3 class="mt-2">
+       <button mat-icon-button  color="primary" (click)="manageExperaince()" >
+        <mat-icon >add_circle</mat-icon>
+      </button>
+   Experaince </h3>
+
+   <table class="table">
+    <thead>
+        <tr>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Industry</th>
+            <th>Stat Date</th>
+            <th>End Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let experaince of user.experiance">
+        <td>{{experaince.title}}</td>
+        <td>{{experaince.company}}</td>
+        <td>{{experaince.industry}}</td>
+        <td>{{experaince.started|date:'longDate'}}</td>
+        <td>{{experaince.ended|date:'longDate'}}</td>
+        <td>
+          <button mat-icon-button (click)="manageExperaince(experaince)">
+              <mat-icon class="text-warning">edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteExperiance(experaince)">
+              <mat-icon class="text-danger">delete</mat-icon>
+          </button>
+      </td>
+
+      </tr>
+    </tbody>
+   </table>
+
+
+
+              <button mat-raised-button color="primary" (click)="update()" >Save</button>
+            
+      
+      
+
+    
+</div>

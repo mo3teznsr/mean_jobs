@@ -1,0 +1,25 @@
+
+
+
+
+<div class="card"> 
+    
+    <input class="form-control" [(ngModel)]="search" placeholder="search" (input)="filter()" />
+</div>
+
+<div class="card my-1" *ngFor="let job of list"> 
+    <div class="d-flex justify-content-between ">
+        <div>
+            <h5>{{job.title}}</h5>
+            <span>{{job.company}}</span>
+        </div>
+    
+        <div>
+            {{job.createdAt|date:"longDate"}}<br />
+            <button mat-raised-button class="mt-1" (click)="apply(job)" color="primary">Apply</button>
+        </div>
+    </div>
+    
+   
+    
+</div>
